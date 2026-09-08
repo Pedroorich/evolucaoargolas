@@ -1,0 +1,5 @@
+﻿# robots.txt para Evolução Argolas
+User-agent: *
+Allow: /
+
+Sitemap: https://evolucaoargolas.com.br/sitemap.xml
