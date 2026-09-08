@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Navbar Dynamic Transparency on Scroll (Transparent over Hero -> Solid White on scroll)
   const navbar = document.getElementById('navbar');
   const heroSection = document.getElementById('hero');
+  const scrollCue = document.querySelector('.hero-scroll-cue');
 
   function handleNavbarScroll() {
     if (!navbar) return;
@@ -36,6 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       navbar.classList.add('navbar-transparent');
       navbar.classList.remove('navbar-scrolled');
+    }
+
+    if (scrollCue) {
+      if (window.scrollY > 40) {
+        scrollCue.style.opacity = '0';
+        scrollCue.style.pointerEvents = 'none';
+      } else {
+        scrollCue.style.opacity = '1';
+        scrollCue.style.pointerEvents = 'auto';
+      }
     }
   }
 
