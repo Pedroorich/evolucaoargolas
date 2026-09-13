@@ -97,6 +97,168 @@
 }
 
 /* ==========================================================================
+   TELA DE CARREGAMENTO INDUSTRIAL PREMIUM (PRELOADER)
+   ========================================================================== */
+
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #06090F;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.site-preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(240, 102, 2, 0.12) 0%, transparent 65%),
+              linear-gradient(to bottom, #06090F 0%, #0A0E17 100%);
+  z-index: 1;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 380px;
+  width: 90%;
+}
+
+.preloader-logo-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.preloader-logo {
+  height: 46px;
+  width: auto;
+  filter: drop-shadow(0 4px 18px rgba(240, 102, 2, 0.3));
+  animation: preloaderPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes preloaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.92; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+.preloader-spinner-ring {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 1.5rem;
+}
+
+.preloader-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.preloader-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 5;
+}
+
+.preloader-progress {
+  fill: none;
+  stroke: var(--color-orange);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 264;
+  stroke-dashoffset: 264;
+  animation: preloaderDash 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes preloaderDash {
+  0% {
+    stroke-dashoffset: 264;
+    transform: rotate(0deg);
+  }
+  50% {
+    stroke-dashoffset: 66;
+    transform: rotate(180deg);
+  }
+  100% {
+    stroke-dashoffset: 264;
+    transform: rotate(360deg);
+  }
+}
+
+.preloader-core-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  box-shadow: 0 0 16px var(--color-orange);
+  animation: corePulse 1.6s infinite ease-in-out;
+}
+
+@keyframes corePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+.preloader-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.preloader-title {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  letter-spacing: 0.04em;
+}
+
+.preloader-status {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-dark-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.preloader-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-orange) 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(240, 102, 2, 0.6);
+  transition: width 0.25s ease-out;
+}
+
+/* ==========================================================================
    RESET & REGRAS BÁSICAS
    ========================================================================== */
 

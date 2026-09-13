@@ -9,6 +9,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const OFFICIAL_WHATSAPP = '5511943884222';
   const BASE_CTA_TEXT = 'Ol%C3%A1%2C+gostaria+de+solicitar+um+or%C3%A7amento+de+argolas+no+atacado.';
 
+  // PRELOADER INDUSTRIAL & BUFFERING DO VÍDEO
+  const preloader = document.getElementById('site-preloader');
+  const preloaderBar = document.getElementById('preloader-bar-fill');
+  const preloaderStatus = document.getElementById('preloader-status-text');
+  const heroVideo = document.getElementById('hero-bg-video');
+
+  let loadProgress = 15;
+  if (preloaderBar) preloaderBar.style.width = `${loadProgress}%`;
+
+  const progressInterval = setInterval(() => {
+    if (loadProgress < 85) {
+      loadProgress += Math.floor(Math.random() * 12) + 5;
+      if (loadProgress > 85) loadProgress = 85;
+      if (preloaderBar) preloaderBar.style.width = `${loadProgress}%`;
+      if (preloaderStatus) {
+        if (loadProgress > 60) {
+          preloaderStatus.textContent = 'Calibrando conformação do aço...';
+        } else if (loadProgress > 35) {
+          preloaderStatus.textContent = 'Carregando catálogo e linha industrial...';
+        }
+      }
+    }
+  }, 120);
+
+  function dismissPreloader() {
+    clearInterval(progressInterval);
+    if (preloaderBar) preloaderBar.style.width = '100%';
+    if (preloaderStatus) preloaderStatus.textContent = 'Unidade pronta!';
+    setTimeout(() => {
+      if (preloader) preloader.classList.add('loaded');
+      document.body.classList.add('page-ready');
+      if (heroVideo) {
+        heroVideo.play().catch(() => {});
+      }
+    }, 380);
+  }
+
+  // Dismiss as soon as window loads and video is ready to play smoothly
+  if (heroVideo && heroVideo.readyState >= 3) {
+    dismissPreloader();
+  } else if (heroVideo) {
+    heroVideo.addEventListener('canplaythrough', dismissPreloader, { once: true });
+    window.addEventListener('load', () => {
+      // Fallback in case network delays video canplaythrough
+      setTimeout(dismissPreloader, 1200);
+    });
+  } else {
+    window.addEventListener('load', dismissPreloader);
+  }
+  // Hard safety timeout: Preloader will never block the user longer than 2.8s
+  setTimeout(dismissPreloader, 2800);
+
   // 0. Initialize Spell-UI Animated Gradient WebGL2 Hero Effect
   const gradientContainer = document.getElementById('gradient-container');
   if (gradientContainer) {
