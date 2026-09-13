@@ -362,4 +362,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 9. Video Autoplay Robustness Guarantee (iOS Safari, Android & Low-Power / Tab Visibility)
+  const loopVideos = document.querySelectorAll('video[autoplay]');
+  function playAllVideos() {
+    loopVideos.forEach(video => {
+      video.muted = true;
+      video.defaultMuted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Retry on first user interaction if blocked by browser policy
+          const onFirstInteraction = () => {
+            video.play().catch(() => {});
+            window.removeEventListener('touchstart', onFirstInteraction);
+            window.removeEventListener('scroll', onFirstInteraction);
+            window.removeEventListener('click', onFirstInteraction);
+          };
+          window.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true });
+          window.addEventListener('scroll', onFirstInteraction, { once: true, passive: true });
+          window.addEventListener('click', onFirstInteraction, { once: true });
+        });
+      }
+    });
+  }
+  playAllVideos();
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      playAllVideos();
+    }
+  });
+
 });

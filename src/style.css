@@ -532,22 +532,49 @@ h1, h2, h3, h4 {
   padding: 6rem 1.5rem 5rem 1.5rem;
 }
 
-.gradient-canvas-container {
+/* Vídeo de Fundo em Loop no Hero */
+.hero-video-container {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
+}
+
+.hero-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.45;
+  filter: saturate(1.15) contrast(1.1);
+}
+
+.gradient-canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.65;
+  mix-blend-mode: screen;
 }
 
 .gradient-overlay-vignette {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: radial-gradient(circle at center, transparent 35%, rgba(10, 7, 5, 0.65) 100%),
-              linear-gradient(to bottom, rgba(7, 10, 16, 0.4) 0%, transparent 20%, transparent 80%, rgba(7, 10, 16, 0.85) 100%);
+  z-index: 2;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10, 7, 5, 0.7) 100%),
+              linear-gradient(to bottom, rgba(7, 10, 16, 0.45) 0%, transparent 25%, transparent 75%, rgba(7, 10, 16, 0.9) 100%);
   pointer-events: none;
+}
+
+.hero-video-overlay {
+  background: radial-gradient(circle at center, rgba(14, 10, 7, 0.3) 20%, rgba(7, 10, 16, 0.8) 100%),
+              linear-gradient(to bottom, rgba(7, 10, 16, 0.5) 0%, rgba(7, 10, 16, 0.2) 40%, rgba(7, 10, 16, 0.9) 100%);
 }
 
 .gradient-hero-content {
@@ -1132,12 +1159,35 @@ h1, h2, h3, h4 {
   border-color: var(--color-orange);
 }
 
-.product-svg-container {
-  height: 95px;
+.product-svg-container,
+.product-video-container {
+  height: 140px;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto 0.85rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(30, 41, 59, 0.5) 0%, rgba(14, 19, 30, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.product-video-loop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  pointer-events: none;
+}
+
+.product-card:hover .product-video-loop {
+  transform: scale(1.06);
 }
 
 .ring-svg {
