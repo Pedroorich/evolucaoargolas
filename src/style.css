@@ -1106,10 +1106,10 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
-/* Grade dos 4 Cards de Medidas (16mm, 19mm, 22mm, 25mm) */
+/* Grade de Cards de Medidas e Modelos Especiais */
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 

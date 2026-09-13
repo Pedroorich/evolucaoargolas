@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       p19: "R$ 27,00 / mil",
       b19: "Lote Inicial",
       p22: "R$ 38,00 / mil",
-      b22: "Lote Inicial",
+      b22: "Mais Vendida (Lote Inicial)",
       p25: "R$ 48,00 / mil",
       b25: "Lote Inicial"
     },
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       p19: "R$ 25,60 / mil",
       b19: "5% OFF Atacado",
       p22: "R$ 36,10 / mil",
-      b22: "5% OFF Atacado",
+      b22: "Mais Vendida • 5% OFF",
       p25: "R$ 45,60 / mil",
       b25: "5% OFF Atacado"
     },
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       p19: "R$ 24,30 / mil",
       b19: "10% OFF Escala",
       p22: "R$ 34,20 / mil",
-      b22: "10% OFF Escala",
+      b22: "Mais Vendida • 10% OFF",
       p25: "R$ 43,20 / mil",
       b25: "10% OFF Escala"
     },
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       p19: "R$ 22,00 / mil",
       b19: "Granel Industrial",
       p22: "R$ 31,00 / mil",
-      b22: "Granel Industrial",
+      b22: "Mais Vendida • Granel",
       p25: "R$ 39,00 / mil",
       b25: "Granel Industrial"
     }
